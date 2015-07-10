@@ -60,9 +60,9 @@ public class Calculator implements Runnable{
     
     info = text;
     
-    objs = new Objects[2];
+    objs = new Objects[1];
     objs[0] = new Objects(800,600,50,en);
-    objs[1] = new Objects(600,400,50,en);
+    //objs[1] = new Objects(600,400,50,en);
   }
   
   public void run(){
@@ -79,7 +79,7 @@ public class Calculator implements Runnable{
         updateShells(prevDist > myDist ? stayAwayFromMe : 0, obj);
         update();
         if(myDist < stayAwayFromMe && prevDist > myDist) obj.close(true);
-        if( obj.close() && ((autoCount!=countVal) || (myDist < stayAwayFromMe && prevDist > myDist) || (myDist < SHELL_BUFF && sqrt(xVel,yVel) < 1))){
+        if( obj.close() && ((autoCount!=countVal) || (myDist < stayAwayFromMe && prevDist > myDist) || (myDist < SHELL_BUFF))){
           //System.out.println(stayAwayFromMe);
           pXForce = 0;
           pYForce = 0;
@@ -126,9 +126,10 @@ public class Calculator implements Runnable{
     else{
       Vector unitV = getUnitVectorFrom(obj);
       //unitV.flip();
-      unitV.mulFactor(sqrt(xVel,yVel));
-      /*if(Math.abs(xVel) > MIN_ABS_VEL)*/ xForce += unitV.x();
-      /*if(Math.abs(yVel) > MIN_ABS_VEL)*/ yForce -= unitV.y();
+      if(sqrt(xVel,yVel) > 0.5) unitV.mulFactor(sqrt(xVel,yVel));
+      else unitV.mulFactor(2);
+      /*if(Math.abs(xVel) > 0.5)*/ xForce += unitV.x();
+      /*if(Math.abs(yVel) > 0.5)*/ yForce -= unitV.y();
       //if(Math.abs(xVel) < 0.1) myDrone.man();
       //System.out.printf("obj: %s\nxForce: %f\nyForce: %f\n\n",obj,unitV.x(),unitV.y());
     }
