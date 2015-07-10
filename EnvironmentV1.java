@@ -33,9 +33,10 @@ public class EnvironmentV1 extends GraphicsProgram{
     (new Thread(drone)).start();
     
     addKeyListeners();
+    addMouseListeners();
     
     try{
-      Thread.sleep(100);
+      Thread.sleep(100); 
     }
     catch(java.lang.InterruptedException e){
       
@@ -55,7 +56,12 @@ public class EnvironmentV1 extends GraphicsProgram{
   public void keyPressed(KeyEvent e){
     //if(e.getKeyCode()==38) read();//calc.setAltitude(1/0.95);
     //if(e.getKeyCode()==40) calc.setAltitude(0.95);
-    if(e.getKeyCode()==32) calc.reset();
+    //if(e.getKeyCode()==32) calc.reset();
     //System.out.println(e.getKeyCode());
   }
+  
+  public void mousePressed(MouseEvent e){
+    calc.reset(e.getX(),e.getY());
+  }
+  
 }

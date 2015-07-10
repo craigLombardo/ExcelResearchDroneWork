@@ -38,4 +38,38 @@ public class Vector{
     System.out.println("y comp: " + yVal);
   }
   
+  public void makeOrthogonal(double uAngle, double vAngle){
+    double tmpx = xVal;
+    xVal = yVal;
+    yVal = tmpx;
+    
+    int quad;
+    if(uAngle >= 270) quad = 2;
+    else if(uAngle >= 180) quad = 1;
+    else if(uAngle >= 90) quad = 4;
+    else quad = 3;
+    //System.out.println(quad);
+    if(quad == 1){
+      if(vAngle >= 135) yVal = -yVal;
+      else xVal = -xVal;
+    }
+    else if(quad == 2){
+      if(vAngle <= 315) yVal = yVal;
+      else xVal = -xVal;
+    }
+    else if(quad == 3){
+      //System.out.println("here");
+      if(vAngle <= 45) yVal = -yVal;
+      else xVal = -xVal;
+    }
+    else{
+      if(vAngle <= 225) yVal = yVal;
+      else xVal = -xVal;
+    }
+    //if(vAngle <= uAngle) yVal = -yVal;
+    //else xVal = -xVal;
+    
+    
+  }
+  
 }

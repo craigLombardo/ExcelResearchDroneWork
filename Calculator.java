@@ -125,12 +125,14 @@ public class Calculator implements Runnable{
     
     else{
       Vector unitV = getUnitVectorFrom(obj);
+      double an = getAngle(xVel,yVel);
+      //System.out.printf("unit: %f\ndir: %f\n\n",180-getAngle(unitV.x(),unitV.y()),an < 0 ? an+360 : an);
+      unitV.makeOrthogonal(180-getAngle(unitV.x(),unitV.y()),an);
       //unitV.flip();
       if(sqrt(xVel,yVel) > 0.5) unitV.mulFactor(sqrt(xVel,yVel));
       else unitV.mulFactor(2);
-      /*if(Math.abs(xVel) > 0.5)*/ xForce += unitV.x();
-      /*if(Math.abs(yVel) > 0.5)*/ yForce -= unitV.y();
-      //if(Math.abs(xVel) < 0.1) myDrone.man();
+      xForce += unitV.x();
+      yForce -= unitV.y();
       //System.out.printf("obj: %s\nxForce: %f\nyForce: %f\n\n",obj,unitV.x(),unitV.y());
     }
     //System.out.println(xForce);
@@ -220,11 +222,11 @@ public class Calculator implements Runnable{
     }
   }
   
-  public void reset(){
+  public void reset(double tx, double ty){
     xVel=0;
     yVel=0;
-    xPos=200;
-    yPos=600;
+    xPos=tx;
+    yPos=ty;
   }
   
   public void startFlight(){
@@ -242,9 +244,17 @@ public class Calculator implements Runnable{
     Vector objPos = obj.getPosition();
     double dx = xPos - objPos.x();
     double dy = yPos - objPos.y();
+    //double dx = objPos.x() - xPos;
+    //double dy = objPos.y() - yPos;
     double mag = sqrt(dx,dy);
     return new Vector(dx/mag,dy/mag);
   }
+  
+  public double getAngle(double x,double y){
+    //Vector vel = new Vector(xVel,yVel);
+    return Math.toDegrees(Math.atan2(y,x));
+  }
+  
   public void updateShells(double dist, Objects obj){
     obj.updateMyShell(dist);
   }
