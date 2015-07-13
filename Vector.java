@@ -20,6 +20,12 @@ public class Vector{
     yVal = -yVal;
   }
   
+  public void makeUnitVector(){
+    double mag = Math.sqrt(Math.pow(xVal,2)+Math.pow(yVal,2));
+    xVal /= mag;
+    yVal /= mag;
+  }
+  
   public double getMag(){
     return Math.sqrt(Math.pow(xVal,2)+Math.pow(yVal,2));
   }
@@ -43,31 +49,14 @@ public class Vector{
     xVal = yVal;
     yVal = tmpx;
     
-    int quad;
-    if(uAngle >= 270) quad = 2;
-    else if(uAngle >= 180) quad = 1;
-    else if(uAngle >= 90) quad = 4;
-    else quad = 3;
-    //System.out.println(quad);
-    if(quad == 1){
-      if(vAngle >= 135) yVal = -yVal;
-      else xVal = -xVal;
-    }
-    else if(quad == 2){
-      if(vAngle <= 315) yVal = yVal;
-      else xVal = -xVal;
-    }
-    else if(quad == 3){
-      //System.out.println("here");
-      if(vAngle <= 45) yVal = -yVal;
-      else xVal = -xVal;
-    }
-    else{
-      if(vAngle <= 225) yVal = yVal;
-      else xVal = -xVal;
-    }
-    //if(vAngle <= uAngle) yVal = -yVal;
-    //else xVal = -xVal;
+    double newVAngle = vAngle;
+    double newUAngle = uAngle;
+    
+    if(vAngle < 90 && uAngle > 270) newVAngle += 360;
+    else if(uAngle < 90 && vAngle > 270) newUAngle += 360;
+    
+    if(newVAngle <= newUAngle) yVal = -2*yVal;
+    else xVal = -2*xVal;
     
     
   }

@@ -125,9 +125,10 @@ public class Calculator implements Runnable{
     
     else{
       Vector unitV = getUnitVectorFrom(obj);
-      double an = getAngle(xVel,yVel);
+      double an1 = 180-getAngle(unitV.x(),unitV.y());
+      double an2 = getAngle(xVel,yVel);
       //System.out.printf("unit: %f\ndir: %f\n\n",180-getAngle(unitV.x(),unitV.y()),an < 0 ? an+360 : an);
-      unitV.makeOrthogonal(180-getAngle(unitV.x(),unitV.y()),an);
+      unitV.makeOrthogonal(an1 < 0 ? an1 + 360 : an1, an2 < 0 ? an2 + 360 : an2);
       //unitV.flip();
       if(sqrt(xVel,yVel) > 0.5) unitV.mulFactor(sqrt(xVel,yVel));
       else unitV.mulFactor(2);
