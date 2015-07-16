@@ -4,10 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Scanner;
 
-/*
- * Testing, not actually used in the application
- */
-
 public class smart extends GraphicsProgram{
   
   public static int APPLICATION_WIDTH = 300;

@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * This class constructs a drone and is really only used for graphics
+ * This class constructs a drone
  */
 public class Drone implements Runnable{
   

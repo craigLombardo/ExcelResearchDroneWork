@@ -2,10 +2,6 @@ public class Vector{
   
   private Double xVal, yVal;
   
-  /*
-   * This class was used because java does not support tuples, everything else can be pretty easily ported over 
-   */
-  
   public Vector(Double x, Double y){
     xVal = x;
     yVal = y;
@@ -17,6 +13,11 @@ public class Vector{
   
   public Double y(){
     return yVal;
+  }
+  
+  public void flip(){
+    xVal = -xVal;
+    yVal = -yVal;
   }
   
   public void makeUnitVector(){
@@ -58,13 +59,14 @@ public class Vector{
     double um = 2.0;
     if(newVAngle <= newUAngle){
       if(Math.abs(xVal) < 0.1) xVal = yVal >= 0 ? um : -um;
-      else xVal = yVal <= 0 ? (delt)*xVal : -(delt)*xVal;
+      else xVal = (delt)*xVal;
       yVal = -yVal;
     }
     else{
       xVal = -xVal;
       if(Math.abs(yVal) < 0.1) yVal = xVal >= 0 ? um : -um;
-      else yVal = xVal <= 0 ? (delt)*yVal : -(delt)*yVal;
+      else yVal = (delt)*yVal;
+      //System.out.println("here");
     }
   }
   

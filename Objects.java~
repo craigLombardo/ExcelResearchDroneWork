@@ -1,10 +1,6 @@
 import acm.graphics.*;
 import java.awt.*;
 
-/*
- * This is another graphical component and does not do much more than represent a point that is to be avoided
- * its main purpose is for the visual aspect of the simulation
- */
 public class Objects{
   
   private GOval obj;
@@ -21,6 +17,8 @@ public class Objects{
     obj.setFillColor(Color.RED);
     
     shell = new GOval(x-d, y-d, 0, 0);
+    //shell.setFilled(false);
+    //shell.setColor(Color.BLACK);
     
     en.add(obj);
     en.add(shell);
@@ -31,9 +29,6 @@ public class Objects{
     initRadius = d;
   }
   
-  /**
-   * returns the distance from an object to the center of this point
-   */
   public double getDistanceFrom(double xPos, double yPos){
     distance = Math.sqrt(Math.pow(xPos-myX,2)+Math.pow(yPos-myY,2))-initRadius;
     return distance;
@@ -43,9 +38,6 @@ public class Objects{
     return new Vector(myX,myY);
   }
   
-  /*
-   * This updates the size of the outer shell (used for more graphical representations)
-   */
   public void updateMyShell(double dist){
     myEn.remove(shell);
     shell = new GOval(myX-dist-initRadius/2, myY-dist-initRadius/2, 2*dist+initRadius, 2*dist+initRadius);

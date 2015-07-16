@@ -2,10 +2,8 @@ import acm.program.*;
 import java.awt.event.*;
 import java.lang.Exception;
 import javax.swing.*;
+//import java.util.Scanner;
 
-/*
- * This class serves as the graphical environment for the simulation.
- */
 public class EnvironmentV1 extends GraphicsProgram{
   
   private Drone drone;
@@ -38,8 +36,6 @@ public class EnvironmentV1 extends GraphicsProgram{
     addMouseListeners();
     
     try{
-      //We wait just to ensure the controller is properly mounted before beginning, if there is an error it will become
-      //apparent before the computer awakens, hopefully....
       Thread.sleep(100); 
     }
     catch(java.lang.InterruptedException e){
@@ -47,6 +43,21 @@ public class EnvironmentV1 extends GraphicsProgram{
     } 
     calc.startFlight();
     
+  }
+  
+  /*public void read(){
+   System.out.println("What angle?");
+   Scanner sc = new Scanner(System.in);
+   double val = Double.parseDouble(sc.next());
+   sc.close();
+   System.out.println("done");
+   }*/
+  
+  public void keyPressed(KeyEvent e){
+    //if(e.getKeyCode()==38) read();//calc.setAltitude(1/0.95);
+    //if(e.getKeyCode()==40) calc.setAltitude(0.95);
+    //if(e.getKeyCode()==32) calc.reset();
+    //System.out.println(e.getKeyCode());
   }
   
   public void mousePressed(MouseEvent e){

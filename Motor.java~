@@ -1,7 +1,6 @@
 import acm.graphics.*;
 import java.awt.*;
 
-//purely graphical, dont worry, not even necessary
 public class Motor{
   
   private GPolygon motor;
