@@ -60,11 +60,11 @@ public class Calculator implements Runnable{
     
     info = text;
     
-    objs = new Objects[4];
+    objs = new Objects[1];
     objs[0] = new Objects(800,200,50,en);
-    objs[1] = new Objects(600,200,50,en);
-    objs[2] = new Objects(700,200,50,en);
-    objs[3] = new Objects(500,200,50,en);
+    //objs[1] = new Objects(600,200,50,en);
+    //objs[2] = new Objects(700,200,50,en);
+    //objs[3] = new Objects(500,200,50,en);
   }
   
   public void run(){
@@ -130,11 +130,13 @@ public class Calculator implements Runnable{
        */
       /*
        * //start
-       double an1 = 180-getAngle(unitV.x(),unitV.y());
-       double an2 = getAngle(xVel,yVel);
-       unitV.makeOrthogonal(an1 < 0 ? an1 + 360 : an1, an2 < 0 ? an2 + 360 : an2);
-       //end
        */
+      
+      double an1 = 180-getAngle(unitV.x(),unitV.y());
+      double an2 = getAngle(xVel,yVel);
+      unitV.makeOrthogonal(an1 < 0 ? an1 + 360 : an1, an2 < 0 ? an2 + 360 : an2);
+      //end
+      //*/
       
       if(sqrt(xVel,yVel) > 0.5) unitV.mulFactor(sqrt(xVel,yVel));
       else unitV.mulFactor(2);
